@@ -1,0 +1,27 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: eventing-sources-mnsoss
+subjects:
+- kind: ServiceAccount
+  name: mnsoss-sa
+  namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: eventing-sources-mnsoss-controller
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: mnsoss-sa
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mnsoss-sh-secret
+type: Opaque
+data:
+  mns: eyAidXJsIjoiaHR0cHM6Ly94eHh4Lm1ucy5jbi1zaGFuZ2hhaS5hbGl5dW5jcy5jb20vIiwgImFjY2Vzc0tleUlkIjoieHh4IiwiYWNjZXNzS2V5U2VjcmV0IjoieHgiIH0K

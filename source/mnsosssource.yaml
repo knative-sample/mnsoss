@@ -1,0 +1,19 @@
+apiVersion: sources.eventing.knative.dev/v1alpha1
+kind: MnsOssSource
+metadata:
+  labels:
+    controller-tools.k8s.io: "1.0"
+  name: mnsoss-face
+spec:
+  # Add fields here
+  serviceAccountName: mnsoss-sa
+  accessToken:
+    secretKeyRef:
+      name: mnsoss-sh-secret
+      key: mns
+  sink:
+    apiVersion: eventing.knative.dev/v1alpha1
+    kind: Broker
+    name: default
+  topic: mns-en-topics-oss-face-image-xxxx
+

@@ -1,0 +1,20 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: face-recognition
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - image: registry.cn-hangzhou.aliyuncs.com/knative-sample/face-recognition:v0.2.7
+        command:
+        - '/app/face-recognition'
+        - --configpath=/app/config
+        env:
+        - name: ACCESSKEY_ID
+          value: "xxx"
+        - name: ACCESSKEY_SECRET
+          value: "xxx"
+        - name: UPLOAD_OSS_PATH
+          value: "face-image/target"
